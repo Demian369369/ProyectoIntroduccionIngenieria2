@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Interactivo UDG 🎓</title>
+    <link rel="icon" type="image/jpeg" href="images/logoUDG.jpg">
+    <link rel="stylesheet" href="css/MapaUDG.css" />
+</head>
+<body>
+    <div class="search-container">
+        <div class="search-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-box" placeholder="Buscar edificio o área..." id="searchInput">
+        </div>
+    </div>
+    <div id="reloj"></div>
+    <div class="container" id="phone-container">
+        <div class="phone-screen">
+            <div class="map-container" id="map-container">
+                <img src="images/mapa-udg.jpg" alt="Mapa de la UDG" id="main-map">
+                <iframe id="google-map" src="" style="display:none; width: 100%; height: 100%; border:none;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <button class="phone-home-button" onclick="showMainMap()"></button>
+        </div>
+    </div>
+    <div class="right-panel">
+        <button class="main-button" id="toggle-real-images">🏫 Ver en Cucei</button>
+        <h2>🗺️ Filtro de Mapa UDG</h2>
+        <div class="buttons-container">
+            <button class="main-button" onclick="showParts()">🏢 Buscar Edificios</button>
+            <button class="main-button" onclick="showZonesOfInterest()">🎯 Zonas de Interés</button>
+            <button class="main-button" onclick="showInteractiveMap()">🎮 Mapa Interactivo</button>
+            <button class="main-button" onclick="showGoogleMaps()">🗺️ Google Maps</button>
+            <button class="main-button" onclick="window.location.href='https://1drv.ms/p/c/8daf5964e63d40e0/Ef14SDxuiHhMithnYRkfLqEBrDBcbGrKqtKSGPDPGVXlzQ?e=g2w96K';">📚 Conociendo Mi UDG</button>
+            <button class="main-button" onclick="changeMap('images/ingesmap.jpg')">🎓 Mapa Ingenierías</button>
+        </div>
+        <div class="parts-buttons" id="parts-buttons" style="display: none;">
+            <button class="btn-brillante" onclick="changeMap('images/edificioa.jpg')">🏢 Edificio (A)</button>
+            <button class="btn-brillante" onclick="changeMap('images/edificiob.jpg')">🏢 Edificio (B)</button>
+            <button class="btn-brillante" onclick="changeMap('images/edificioc.jpg')">🏢 Edificio (C)</button>
+            <button class="btn-brillante" onclick="changeMap('images/edificiod.jpg')">🏢 Edificio (D)</button>
+            <button class="btn-brillante" onclick="changeMap('images/edificioe.jpg')">🏢 Edificio (E)</button>
+            <button class="btn-brillante" onclick="changeMap('images/edificiof.jpg')">🏢 Edificio (F)</button>
+            <button class="btn-brillante" onclick="changeMap('images/edificiog.jpg')">🏢 Edificio (G)</button>
+            <button class="btn-brillante" onclick="changeMap('images/edificioh.jpg')">🏢 Edificio (H)</button>
+            <button class="btn-brillante" onclick="changeMap('images/edificioi.jpg')">🏢 Edificio (I)</button>
+            <button class="btn-brillante" onclick="changeMap('images/edificioj.jpg')">🏢 Edificio (J)</button>
+            <button class="btn-brillante" onclick="changeMap('images/edificiok.jpg')">🏢 Edificio (K)</button>
+            <button class="btn-brillante" onclick="changeMap('images/edificiom.jpg')">🏢 Edificio (M)</button>
+            <button class="btn-brillante" onclick="changeMap('images/edificion.jpg')">🏢 Edificio (N)</button>
+            <button class="btn-brillante" onclick="changeMap('images/edificioo.jpg')">🏢 Edificio (O)</button>
+            <button class="btn-brillante" onclick="changeMap('images/edificiop.jpg')">🏢 Edificio (P)</button>
+            <button class="btn-brillante" onclick="changeMap('images/edificioq.jpg')">🏢 Edificio (Q)</button>
+            <button class="btn-brillante" onclick="changeMap('images/edificior.jpg')">🏢 Edificio (R)</button>
+            <button class="btn-brillante" onclick="changeMap('images/edificios.jpg')">🏢 Edificio (S)</button>
+            <button class="btn-brillante" onclick="changeMap('images/edificios2.jpg')">🏢 Edificio (S2)</button>
+            <button class="btn-brillante" onclick="changeMap('images/edificiout.jpg')">🏢 Edificio (T)</button>
+            <button class="btn-brillante" onclick="changeMap('images/edificiout.jpg')">🏢 Edificio (U)</button>
+            <button class="btn-brillante" onclick="changeMap('images/edificiov.jpg')">🏢 Edificio (V)</button>
+            <button class="btn-brillante" onclick="changeMap('images/edificiow.jpg')">🏢 Edificio (W)</button>
+            <button class="btn-brillante" onclick="changeMap('images/edificiox.jpg')">🏢 Edificio (X)</button>
+            <button class="btn-brillante" onclick="changeMap('images/edificioy.jpg')">🏢 Edificio (Y)</button>
+            <button class="btn-brillante" onclick="changeMap('images/edificioz.jpg')">🏢 Edificio (Z)</button>
+        </div>
+        <div id="zones-buttons" style="display: none;">
+            <button class="btn-brillante" onclick="changeMap('images/entradas.jpg')">🚪 Entradas</button>
+            <button class="btn-brillante" onclick="changeMap('images/cafeteria.jpg')">☕ Cafeterías</button>
+            <button class="btn-brillante" onclick="changeMap('images/sanitarios.jpg')">🚻Sanitarios</button>
+            <button class="btn-brillante" onclick="changeMap('images/papelerias.jpg')">📚Papelerías</button>
+            <button class="btn-brillante" onclick="changeMap('images/lonaria.jpg')">🏢Lonaria</button>
+            <button class="btn-brillante" onclick="changeMap('images/controlescolar.jpg')">🏫Control Escolar</button>
+            <button class="btn-brillante" onclick="changeMap('images/jobsproulex.jpg')">💼Jobs & Proulex</button>
+            <button class="btn-brillante" onclick="changeMap('images/auditorios.jpg')">🎤Auditorios</button>
+            <button class="btn-brillante" onclick="changeMap('images/medicos.jpg')">🏥Servicios Médicos</button>
+            <button class="btn-brillante" onclick="changeMap('images/cajero.jpg')">🏦Cajero</button>
+            <button class="btn-brillante" onclick="changeMap('images/generales.jpg')">🛠️Servicios Generales</button>
+        </div>
+        <div id="interactive-map" style="display: none;">
+            <div class="door-buttons">
+                <button class="btn-brillante" onclick="showDoorControl('boulevard')">🏛️ Boulevard</button>
+                <button class="btn-brillante" onclick="showDoorControl('revolucion')">🏛️ Revolución</button>
+                <button class="btn-brillante" onclick="showDoorControl('olimpica')">🏛️ Olímpica</button>
+            </div>
+        </div>
+        <div id="control-container" style="display: none;">
+            <div class="direction-buttons">
+                <button class="direction-button" id="up">⬆️</button>
+                <button class="direction-button" id="left">⬅️</button>
+                <button class="direction-button" id="down">⬇️</button>
+                <button class="direction-button" id="right">➡️</button>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <button onclick="window.location.href='Inicio.html';">🏠 Inicio</button>
+        <button onclick="window.location.href='CosasImportantes.html';">📌 Cosas Importantes</button>
+        <button onclick="window.location.href='UDGMaterias.html';">📚 UDG Materias</button>
+        <button onclick="window.location.href='Calendario.html';">📅 Calendario</button>
+    </footer>
+    <script src="js/MapaUDG.js"></script>
+</body>
+</html>
