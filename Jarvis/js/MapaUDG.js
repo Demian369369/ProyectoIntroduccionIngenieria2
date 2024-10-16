@@ -97,6 +97,63 @@
                     changeMap(locationData[key]);
                 }
             }
+
+            if (window.innerWidth <= 768) {
+                const controlContainer = document.getElementById('control-container');
+                if (showingRealImages) {
+                    controlContainer.style.bottom = '10px';
+                } else {
+                    controlContainer.style.bottom = '70px';
+                }
+            }
+        });
+
+        function changeMap(image) {
+            const mainMap = document.getElementById('main-map');
+            if (typeof image === 'string') {
+                mainMap.src = image;
+            } else {
+                mainMap.src = showingRealImages ? image.real : image.map;
+            }
+            mainMap.style.display = 'block';
+            document.getElementById('google-map').style.display = 'none';
+
+            setTimeout(() => {
+                const containerWidth = mainMap.offsetWidth;
+                const containerHeight = mainMap.offsetHeight;
+                const imgRatio = mainMap.naturalWidth / mainMap.naturalHeight;
+                const containerRatio = containerWidth / containerHeight;
+
+                if (imgRatio > containerRatio) {
+                    mainMap.style.width = '100%';
+                    mainMap.style.height = 'auto';
+                } else {
+                    mainMap.style.width = 'auto';
+                    mainMap.style.height = '100%';
+                }
+
+                mainMap.style.position = 'absolute';
+                mainMap.style.left = '50%';
+                mainMap.style.top = '50%';
+                mainMap.style.transform = 'translate(-50%, -50%)';
+            }, 100);
+        }
+
+        window.addEventListener('resize', () => {
+            const container = document.getElementById('phone-container');
+            const controlContainer = document.getElementById('control-container');
+            
+            if (window.innerWidth <= 768) {
+                if (showingRealImages) {
+                    container.classList.add('expanded');
+                    controlContainer.style.bottom = '10px';
+                } else {
+                    container.classList.remove('expanded');
+                    controlContainer.style.bottom = '70px';
+                }
+            } else {
+                controlContainer.style.bottom = '20px';
+            }
         });
 
         function changeMap(image) {
